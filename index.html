@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>شركة المستقبل - تسجيل الدخول / إنشاء حساب</title>
+  <!-- animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- FontAwesome للأيقونات -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- ملف الأنماط -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- زر تبديل الوضع (النهار/الليل) مع تأثير حركة سلس -->
+  <button id="modeToggle" class="mode-toggle" title="تبديل الوضع">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- خلفية جسيمات -->
+  <div id="particles-js"></div>
+  <!-- فيديو خلفية ديناميكي -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+  </video>
+  <div class="background-overlay"></div>
+
+  <!-- حاوية النموذج (بدون تأثير Tilt) -->
+  <div class="login-wrapper" id="wrapperContainer">
+    <div class="company-header">
+      <img src="https://via.placeholder.com/80?text=Logo" alt="شعار الشركة" class="animate__animated animate__rotateIn" />
+      <!-- شعار الشركة ثابت -->
+      <h1>شركة المستقبل</h1>
+    </div>
+    <div class="login-container">
+      <h2 class="title" id="formTitle">تسجيل الدخول</h2>
+      <!-- النموذج الديناميكي -->
+      <form id="authForm">
+        <!-- حاوية الحقول الديناميكية -->
+        <div id="formFields">
+          <!-- الحقول الافتراضية لتسجيل الدخول -->
+          <div class="form-group">
+            <label for="username">اسم المستخدم</label>
+            <input type="text" id="username" placeholder="أدخل اسم المستخدم" required />
+          </div>
+          <div class="form-group password-group">
+            <label for="password">كلمة المرور</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" placeholder="أدخل كلمة المرور" required />
+              <i class="fa-solid fa-eye toggle-password" id="togglePassword" title="إظهار/إخفاء كلمة المرور"></i>
+            </div>
+            <!-- مؤشر قوة كلمة السر -->
+            <div id="passwordStrengthIndicator" class="password-strength"></div>
+          </div>
+        </div>
+        <!-- خيارات إضافية لتسجيل الدخول (تظهر فقط في وضع الدخول) -->
+        <div class="form-options" id="extraOptions">
+          <label class="remember-me">
+            <input type="checkbox" id="rememberMe" /> تذكرني
+          </label>
+          <a href="#" class="forgot-password" id="openForgotModal">نسيت كلمة المرور؟</a>
+        </div>
+        <button type="submit" id="authBtn">
+          <span id="btnText">تسجيل الدخول</span>
+          <div class="ripple"></div>
+        </button>
+        <div class="loading-spinner" id="loadingSpinner"></div>
+      </form>
+      <!-- قسم تسجيل الدخول عبر منصات التواصل -->
+      <div class="social-login">
+        <p>أو سجل الدخول عبر</p>
+        <div class="social-buttons">
+          <a href="#" class="social-btn google" id="googleLogin"><i class="fab fa-google"></i></a>
+          <a href="#" class="social-btn facebook" id="facebookLogin"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn twitter" id="twitterLogin"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <!-- رابط تغيير الحالة بين تسجيل الدخول وإنشاء حساب -->
+      <p class="signup-text" id="toggleAuthText">ليس لديك حساب؟ <a href="#" id="signupLink">إنشاء حساب</a></p>
+      <p id="error-message" class="error-message"></p>
+    </div>
+  </div>
+
+  <!-- مودال استعادة كلمة المرور -->
+  <div id="forgotModal" class="modal">
+    <div class="modal-content animate__animated">
+      <span class="close" id="closeForgotModal">&times;</span>
+      <h3>استعادة كلمة المرور</h3>
+      <p>أدخل بريدك الإلكتروني لاستعادة كلمة المرور</p>
+      <input type="email" id="forgotEmail" placeholder="أدخل بريدك الإلكتروني" />
+      <button id="forgotSubmit">إرسال</button>
+    </div>
+  </div>
+
+  <!-- المكتبات الخارجية -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <!-- تمت إزالة Typed.js لأننا لم نعد بحاجة للنص الديناميكي -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+/* المتغيرات الأساسية للوضع الليلي والنهاري */
+:root {
+  --bg-color: #000;
+  --text-color: #fff;
+  --container-bg: rgba(255,255,255,0.98);
+  --overlay-bg: rgba(0,0,0,0.65);
+  --btn-gradient: linear-gradient(45deg, #0078FF, #00C6FF);
+  --btn-hover: linear-gradient(45deg, #005ecb, #009bd9);
+}
+
+body.light-mode {
+  --bg-color: #f4f4f4;
+  --text-color: #333;
+  --container-bg: rgba(255,255,255,0.98);
+  --overlay-bg: rgba(255,255,255,0.5);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  position: relative;
+}
+
+/* زر تبديل الوضع */
+.mode-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-color);
+  cursor: pointer;
+  outline: none;
+}
+
+/* فيديو الخلفية */
+#bgVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.5;
+}
+
+/* منطقة جسيمات الخلفية */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* تراكب الخلفية */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-bg);
+  z-index: -1;
+}
+
+/* تغليف الحاوية الرئيسية */
+.login-wrapper {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0.9);
+  padding: 0 20px;
+}
+
+/* رأس الشركة */
+.company-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+.company-header img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(255,255,255,0.3);
+}
+.company-header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* نموذج تسجيل الدخول / إنشاء حساب */
+.login-container {
+  background: var(--container-bg);
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+.login-container .title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+.login-container .title::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: #0078FF;
+  bottom: 0;
+  left: 0;
+  animation: expandLine 2s forwards;
+}
+@keyframes expandLine {
+  to { width: 100%; }
+}
+
+/* الحقول والعناصر */
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus {
+  border-color: #0078FF;
+  box-shadow: 0 0 8px rgba(0,120,255,0.6);
+  outline: none;
+}
+
+/* مجموعة كلمة المرور */
+.password-group .password-wrapper {
+  position: relative;
+}
+.password-group .toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.password-group input:focus + .toggle-password,
+.password-group input:not(:placeholder-shown) + .toggle-password {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* مؤشر قوة كلمة السر */
+.password-strength {
+  margin-top: 5px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+/* خيارات النموذج */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.remember-me {
+  font-size: 0.9rem;
+  color: #555;
+}
+.forgot-password {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #0078FF;
+  transition: color 0.3s;
+}
+.forgot-password:hover {
+  color: #005ecb;
+}
+
+/* زر الإرسال */
+button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 12px;
+  background: var(--btn-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+button[type="submit"]:hover {
+  background: var(--btn-hover);
+}
+button .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.5);
+  transform: scale(0);
+  pointer-events: none;
+}
+.rippleEffect {
+  animation: rippleAnim 0.6s linear;
+}
+@keyframes rippleAnim {
+  from { transform: scale(0); opacity: 0.5; }
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* مؤشر التحميل */
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0078FF;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 15px auto 0;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* قسم تسجيل الدخول عبر منصات التواصل */
+.social-login {
+  text-align: center;
+  margin-top: 20px;
+}
+.social-login p {
+  margin: 10px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.3rem;
+  transition: transform 0.3s;
+}
+.social-btn.google { background: #db4437; }
+.social-btn.facebook { background: #3b5998; }
+.social-btn.twitter { background: #1da1f2; }
+.social-btn:hover { transform: scale(1.15); }
+
+/* رابط تغيير الحالة بين تسجيل الدخول وإنشاء حساب */
+.signup-text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+}
+.signup-text a {
+  color: #0078FF;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.signup-text a:hover { text-decoration: underline; }
+
+/* رسالة الخطأ */
+.error-message {
+  color: #ff4d4d;
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* مودال استعادة كلمة المرور */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  padding: 25px 35px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+.modal-content h3 { margin-top: 0; color: #333; }
+.modal-content p { font-size: 0.9rem; color: #555; }
+.modal-content input[type="email"] { margin-top: 15px; padding: 10px; width: 100%; }
+.modal-content button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #0078FF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.modal-content button:hover { background: #005ecb; }
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+}
+
+/* استجابة التصميم لجميع الأجهزة */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px;
+    max-width: 350px;
+  }
+  .company-header h1 {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 480px) {
+  .login-container {
+    padding: 15px;
+    max-width: 300px;
+  }
+  .company-header h1 {
+    font-size: 1.5rem;
+  }
+}
